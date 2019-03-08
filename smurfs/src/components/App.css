@@ -74,6 +74,7 @@ nav .active {
   text-align: left;
   word-break: break-all;
   background-color: rgba(40, 140, 226, 0.4);
+  position: relative;
 }
 .Smurf h3 {
   font-family: 'David Libre', serif;
@@ -85,6 +86,9 @@ nav .active {
   display: flex;
   justify-content: flex-end;
   align-self: flex-end;
+  position: absolute;
+  bottom: 3px;
+  right: 3px;
 }
 .Smurf div svg:hover {
   color: whitesmoke;
