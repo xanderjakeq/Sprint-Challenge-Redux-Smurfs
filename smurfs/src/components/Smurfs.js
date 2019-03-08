@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import {connect} from 'react-redux'
-import {getSmurfs} from '../actions'
+import {getSmurfs,deleteSmurf,updateSmurf} from '../actions'
 
 import Smurf from './Smurf';
 import axios from 'axios';
@@ -19,12 +19,9 @@ class Smurfs extends Component {
     this.props.getSmurfs()
   }
   handleDelete = id => {
-    axios.delete(`/smurfs/${id}`).then(res => {
-      this.props.updateSmurfs()
-    }).catch(err => {
-      console.log(err)
-    })
+    this.props.deleteSmurf(id).then(() => this.props.getSmurfs())
   }
+
   handleUpdateClick = (data) => {
     this.setState({
       editingSmurfData: data
@@ -32,8 +29,8 @@ class Smurfs extends Component {
   }
   handleUpdate = (e, id, data) => {
     e.preventDefault()
-    axios.put(`/smurfs/${id}`,data).then(res => {
-      this.props.updateSmurfs()
+    this.props.updateSmurf(id, data).then(res => {
+      this.props.getSmurfs()
       this.setState({
         editingSmurfData: null
       })
@@ -71,4 +68,4 @@ const mapStateToProps = state => {
     smurfs: state.smurfs
   }
 }
-export default connect(mapStateToProps,{getSmurfs})(Smurfs);
+export default connect(mapStateToProps,{getSmurfs, deleteSmurf, updateSmurf})(Smurfs);

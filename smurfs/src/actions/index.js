@@ -58,13 +58,26 @@ export const addSmurf = (data) => dispatch => {
   })
 }
 
-// export const updateSmurf = (data) => dispatch => {
-//   axios.put(`${baseUrl}/smurfs/${id}`,data).then(res => {
-//     this.props.updateSmurfs()
-//     this.setState({
-//       editingSmurfData: null
-//     })
-//   }).catch(err => {
-//     console.log(err)
-//   })
-// }
+export const updateSmurf = (id, data) => dispatch => {
+  return axios.put(`${baseUrl}/smurfs/${id}`,data).then(res => {
+    console.log(res)
+ }).catch(err => {
+    console.log(err)
+    dispatch({
+      type: ERROR,
+      payload: err
+    })
+  })
+}
+
+export const deleteSmurf = id => dispatch => {
+  return axios.delete(`${baseUrl}/smurfs/${id}`).then(res => {
+    console.log(res)
+  }).catch(err => {
+    console.log(err)
+    dispatch({
+      type: ERROR,
+      payload: err
+    })
+  })
+}
