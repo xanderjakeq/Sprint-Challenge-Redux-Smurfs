@@ -48,7 +48,6 @@ export const addSmurf = (data) => dispatch => {
   })
   return axios.post(`${baseUrl}/smurfs`, data).then(res => {
     console.log(res.data)
-    getSmurfs()
   }).catch(err => {
     console.log(err)
     dispatch({
@@ -59,6 +58,9 @@ export const addSmurf = (data) => dispatch => {
 }
 
 export const updateSmurf = (id, data) => dispatch => {
+  dispatch({
+    type: UPDATE_SMURF
+  })
   return axios.put(`${baseUrl}/smurfs/${id}`,data).then(res => {
     console.log(res)
  }).catch(err => {
@@ -71,6 +73,9 @@ export const updateSmurf = (id, data) => dispatch => {
 }
 
 export const deleteSmurf = id => dispatch => {
+  dispatch({
+    type: DELETE_SMURF
+  })
   return axios.delete(`${baseUrl}/smurfs/${id}`).then(res => {
     console.log(res)
   }).catch(err => {

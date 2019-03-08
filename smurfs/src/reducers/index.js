@@ -44,7 +44,25 @@ export const rootReducer = (state = initialState, action) => {
       return{
         ...state,
         fetchingSmurfs: false,
+        addingSmurf: false,
+        updatingSmurf: false,
+        deletingSmurf: false,
         smurfs: action.payload
+      }
+    case actions.ADD_SMURF:
+      return {
+        ...state,
+        addingSmurf: true
+      }
+    case actions.UPDATE_SMURF:
+      return {
+        ...state,
+        updatingSmurf: true
+      }
+    case actions.DELETE_SMURF:
+      return {
+        ...state,
+        deletingSmurf: true
       }
     case actions.ERROR:
       return {
